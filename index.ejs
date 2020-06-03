@@ -9,12 +9,6 @@
     <meta name="description" content="<%= htmlWebpackPlugin.options.description %>"/>
     <% } %>
 
-    <% for (var chunk of webpack.chunks) {
-        for (var file of chunk.files) {
-          if (file.match(/\.(js|css)$/)) { %>
-    <link rel="<%= chunk.initial?'preload':'prefetch' %>" href="<%= htmlWebpackPlugin.options.publicPath + file %>" as="<%= file.match(/\.css$/)?'style':'script' %>">
-    <% }}} %>
-
     <script type="text/javascript">
       // Single Page Apps for GitHub Pages (https://github.com/rafrex/spa-github-pages)
       // Copyright (c) 2016 Rafael Pedicini, MIT License

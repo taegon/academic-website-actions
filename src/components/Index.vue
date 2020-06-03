@@ -41,8 +41,8 @@
 
 <script>
 import VueMarkdown from 'vue-markdown';
-import NavColumn from './NavColumn';
-import Publications from './Publications';
+import NavColumn from './NavColumn.vue';
+import Publications from './Publications.vue';
 export default {
   name: 'index',
   props: [

@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import Index from './Index';
+import Index from './Index.vue';
 import { getData } from '../lib/data';
 export default {
   name: 'app',

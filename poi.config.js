@@ -11,7 +11,7 @@ module.exports = (options, req) => ({
     title: pkg.productName,
     description: pkg.description,
     template: path.join(__dirname, 'index.ejs'),
-    publicPath: './dist/',
+    publicPath: './',
   },
   postcss: {
     plugins: [],
@@ -22,7 +22,7 @@ module.exports = (options, req) => ({
   plugins: [],
   webpack(config) {
     if (options.mode === 'production') {
-      config.output.publicPath = '/dist/';
+      config.output.publicPath = './';
     }
     return config;
   },

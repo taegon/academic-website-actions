@@ -1,73 +1,47 @@
-# Personal Academic Website
+# 연구자용 개인 페이지
 
-This is a personal academic website built on top of a Google Sheet document that is super easy to maintain.
+이 저장소는 대학원생/연구원/교수의 개인 페이지를 쉽게 구축하고 관리할 수 있도록 웹사이트를 구축합니다. 웹사이트는 GitHub Pages와 GitHub Actions를 이용하여 서비스됩니다. 최소한의 노력으로 준수한 웹사이트를 만드는 것을 목표로 합니다. 원자료는 [https://jmbyun.github.io](https://jmbyun.github.io)이며, 원자료를 참조하여, 좀 더 수월하게 이용할 수 있도록 GitHub Actions를 적용하였습니다.
 
-This website at [https://jmbyun.github.io](https://jmbyun.github.io) is serving contents in [this Google Sheets document](https://docs.google.com/spreadsheets/d/1AKmXQRHbW2Cu0VpVzM5wewL5W8HtQRgTwhdAugdqJJU/edit?usp=sharing) and you don't even have to do anything to reflect the change to the website after editing the contents of this document. 
+## 작동방식
 
-Fork this project and have your own website!
+GitHub는 GitHub Pages라는 서비스를 통해 GitHub에 저장된 저장소의 자료를 정적페이지로 서비스하고 있습니다. 그래서 이 저장소를 fork해서 조금만 수정하면, 웹에서 자신만의 홈페이지를 확인할 수 있습니다. 기본 설정으로 `https://자신의ID.github.io` 혹은 `https://자신의ID.github.io\저장소이름`으로 접속할 수 있습니다. 개인 도메인이 있으면 `CNAME`이라는 파일을 추가하여 도메인을 적용해줄 수도 있습니다. 이 저장소는 [`https://code.taegon.kr/academic-website-actions`](https://code.taegon.kr/academic-website-actions)에서 확인할 수 있습니다. 저는 `taegon.github.io` 대신 제 개인 도메인인 `code.taegon.kr`를 이용하고 있습니다.
 
-## How does this work?
+두번째로 이 웹사이트의 중요한 부분이 구글 Sheets를 이용하여 컨텐츠를 관리하고 있습니다. 그래서 웹사이트를 띄우는 데 성공한 이후에는, 구글 Sheets만 고쳐주면, 웹사이트가 갱신됩니다. 종종 논문이 추가되고, 졸업, 진학, 취직 등의 이유로 웹사이트를 고쳐주어야 하는데, 구글 Sheets은 언제 어디서나 접근 가능하므로, 구글 로그인만 가능하다면, 어디서나 쉽게 정보를 갱신할 수 있습니다. 원작자의 자료는 [`여기`](https://docs.google.com/spreadsheets/d/1AKmXQRHbW2Cu0VpVzM5wewL5W8HtQRgTwhdAugdqJJU/edit?usp=sharing)에서 확인가능합니다. 이 파일을 복제하여 자신의 정보에 맞추어서 업데이트하기만 하면 됩니다.
 
-This vue.js based web application served as Github Pages dynamically fetches the contents of the Google Sheets document on the client's side, using Google Sheets API. 
-No actual contents are stored in this repository.
+자 이제, 만들어볼까요?
 
-## How to fork and get your own website
+## 만들어 봅시다
 
-1. Fork this repository to your account and rename it as "*{your-github-username}*.github.io". 
+1. 먼저 이 저장소의 오른쪽 상단의 `fork` 버튼을 이용하여 저장소를 `fork`해주세요. `fork`하게 되면, 저장소 이름을 정하게 되는데, 만약 개인 페이지가 없다면, "*{your-github-username}*.github.io"로 지정하여 대표 페이지로 사용할 수 있습니다. 저는 개인 페이지가 따로 있기 때문에 `academic-website-actions`으로 정했습니다.
 
-1. Create your own Google Sheets document, copy and paste the contents of [this sheets document](https://docs.google.com/spreadsheets/d/1AKmXQRHbW2Cu0VpVzM5wewL5W8HtQRgTwhdAugdqJJU/edit?usp=sharing). Make sure to get all sheets in the document prepared. 
+1. 새로운 저장소가 생겼습니다. 최초로 actions이 작업을 시작할텐데 에러가 발생할 겁니다. 제가 사용한 코드에서는 `GITHIB_TOKEN`이라는 변수를 이용하였기 때문인데, 조금 더 자세한 설명은 [`여기`](https://github.com/peaceiris/actions-gh-pages#%EF%B8%8F-first-deployment-with-github_token)를 참조해주세요.
+   1. 페이지 상단에 `Settings`라는 탭을 찾아서 클릭해주세요.
+   1. 페이지를 내려보면, `GitHub Pages`라는 섹션이 있습니다. `Source`라는 부분에서 `gh-page branch`를 선택해주시고, `Enforce HTTPS`도 체크해주세요.
 
-1. Set your document's sharing settings as: *Public on the web - Anyone on the Internet can find and view*.
+1. 이 [`링크`](https://docs.google.com/spreadsheets/d/1AKmXQRHbW2Cu0VpVzM5wewL5W8HtQRgTwhdAugdqJJU/edit?usp=sharing)를 클릭하여 구글 Sheets 문서의 복제본을 만드세요. 위치는 자신의 구글 드라이브 어느 곳에 두든 상관없습니다.
+   1. `Share` 버튼을 눌러서 `Anyone (누구나)` 읽을 수 있도록 공유링크를 생성하세요. 공유링크는 `doc id`를 포함하고 있습니다. 여기서 제시한 링크의 경우 `https://docs.google.com/spreadsheets/d/1AKmXQRHbW2Cu0VpVzM5wewL5W8HtQRgTwhdAugdqJJU/edit?usp=sharing`인데, 여기에서 `googleSheetDocId`는 `1AKmXQRHbW2Cu0VpVzM5wewL5W8HtQRgTwhdAugdqJJU`입니다. 조금 있다가 쓸 것이므로 메모장 같은 곳에 저장해두거나, 크롬 창을 띄워두세요.
+   1. 다소 어려운 부분인데, 구글 API 키가 필요합니다. 차근차근 따라해주세요. 저는 원글에서 제공한 [`Stack Overflow 답변글`](https://stackoverflow.com/a/46583300)을 참조하여 진행하였습니다. 자, 같이 해봅시다.
+   1. [`Google API console`](https://console.developers.google.com/)에 접속하세요. 생성한 프로젝트가 없다면, 프로젝트를 하나 만들어주시기 바랍니다. 프로젝트명은 화면 왼쪽 최상단 `Google APIs` 옆에 드랍다운버튼으로 존재합니다.
+   1. 프로젝트 명이 화면 상단에 제대로 선택되었는지 확인한 후, 왼쪽 메뉴 중  `Credentials`를 선택합니다. `+ CREATE CREDENTIALS`를 선택하여 `API Key`를 하나 생성합니다.
+   1. 이름(Name)은 원하는 명칭으로 작성하시면 되고, `Application restrictions`은 `HTTP referrers (web sites)`를 선택합니다.
+   1. `Website restrictions`은 추가 하여 `자신의깃헙아이디.github.io/*`를 추가합니다. 저같은 경우 `taegon.github.io/*`가 되겠지요. 저는 개인 도메인을 쓰고 있기 때문에 `*.taegon.kr/*`라고 써주었습니다.
+   1. `API restrictions`은 `Restrict key`를 선택하고, 드랍다운 메뉴에서 `Google Sheets API`를 선택합니다.
+   1. `save` 버튼을 눌러 변경사항을 저장합니다.
+   1. 자 다시 왼쪽 메뉴에서 `Credentials`대신 `Library`를 누릅니다. 검색창에 `sheets`를 검색하시면, `Google Sheets API`가 검색됩니다. 클릭해서 세부항목으로 들어가면, `enable`버튼이 있습니다. 이 버튼을 눌러서 API를 활성화해주세요.
+   1. 이제 거의 끝났습니다. 다시 프로젝트 화면으로 돌아와 `Credentials` 버튼을 다시 눌러주세요. `API Keys` 섹션 아래 좀 전에 생성한 키가 보일 것입니다. `Key`라는 필드 아래 긴 문자열이 보일겁니다. 그 옆에 종이를 두장 겹친 아이콘을 누르시면, 키가 복사가 됩니다. 이 문자열이 `googleApiKey`가 됩니다.
 
-1. Get your document id from the URL of the document. Set it as the value of `googleSheetDocId` in `./config.js`.
+1. 저장소 최상위에 있는 `config.js`에 방금 구한 `googleSheetDocId`와 `googleApiKey`를 추가할 것입니다. GitHub 저장소 웹페이지(github.com/자신의아이디/포크한저장소명), 지금 보고 계신 이 페이지에서, `config.js` 파일을 클릭하시면, 내용이 보입니다. 오른쪽 상단에 연필 모양을 클릭하면 바로 수정이 가능합니다. 복사해뒀던 문서 아이디와 API 키를 붙여넣어주세요. 수정후 아래쪽의 커밋 버튼을 누르면 됩니다. 커밋이 생길때마다 GitHub Actions이 실행되므로, 이번 절차를 진행하고 나면, 변경된 웹사이트를 확인할 수 있을 겁니다.
 
-1. Create a new Google account that you are only going to use for this website, get an API key that belongs to your new Google account. Check out on [this answer on Stack Overflow](https://stackoverflow.com/a/46583300) if you don't know how to get an API key for a Google account. Set it as the value of `googleApiKey` in `./config.js`. 
+1. 고생하셨습니다. 이제 상단의 `Actions` 버튼을 눌러보시면, 배포 작업이 진행중인 것을 확인 할 수 있습니다. 약 1-2분 후면 배포작업이 끝납니다. 에러가 없다면, 자신만의 사이트를 확인할 수 있습니다. 앞서 `fork`할 때 저장소의 이름에 따라 접속할 수 있는 주소가 달라집니다. 만약 저장소 이름을 `{your-github-username}.github.io`로 정했다면, `https://{your-github-username}.github.io`로 접속가능합니다. 만약 다른 이름으로 저장소를 정했다면 (예를 들어, `cv`), `https://{your-github-username}.github.io/cv`로 접속 가능합니다.
 
-1. Edit contents of your own Google Sheets document to change the contents of your website at *https://{your-github-username}.github.io*. 
+1. 자 이제 구글 Sheets를 열어서 자신의 정보로 갱신하기 바랍니다.
 
-Now your website is up and ready!
+## QnA
 
-## Development
-
-Just in case if you are interested in modifying this web application. 
-
-### Dependencies
-
-Make sure to install [Node.js](https://nodejs.org/en/) and [Yarn](https://yarnpkg.com/en/) on your environment before you start working on this project.
-
-Install Node.js dependencies with the following command.
-
-```bash
-$ yarn install
-```
-
-### Commands
-
-Following commands are available for development. 
-
-```bash
-# build for production
-$ yarn build
-
-# development mode
-$ yarn dev
-
-# run unit tests
-$ yarn test
-
-# serve the bundled dist folder in production mode
-$ yarn serve
-```
-
-### Polyfills
-
-By default we only polyfill `window.Promise` and `Object.assign`. You can add more polyfills in `./src/polyfills.js`.
-
-### Analyze bundle size
-
-Run `yarn report` to get a report of bundle size.
+혹시 작업 중 문제가 발생하면, [`Issues`](https://github.com/taegon/academic-website-actions/issues)에 남겨주시면, 문제점 및 해결법을 반영하여 이 저장소를 업데이트 하도록 하겠습니다.
 
 ---
 
-This project is generated by [create-vue-app](https://github.com/vue-land/create-vue-app).
+이 프로젝트는 [jmbyun.github.io](https://github.com/jmbyun/jmbyun.github.io) 저장소를 아주 조금 손 본 것입니다. 따라서 크레딧은 당연히 이 분께 가야할 것입니다.
 
+This project is generated by [create-vue-app](https://github.com/vue-land/create-vue-app).

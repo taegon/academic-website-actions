@@ -22,7 +22,7 @@
     "node-sass": "^4.10.0",
     "normalize.css": "^7.0.0",
     "object-assign": "^4.1.1",
-    "preload-webpack-plugin": "^3.0.0",
+    "preload-webpack-plugin": "^3.0.0-beta.4",
     "promise-polyfill": "^6.0.2",
     "vue": "^2.6.11",
     "vue-markdown": "^2.2.4",

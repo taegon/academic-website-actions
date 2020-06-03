@@ -13,10 +13,7 @@ module.exports = (options, req) => ({
     template: path.join(__dirname, 'index.ejs'),
     publicPath: './',
   },
-  webpack(config) {
-    if (options.mode === 'production') {
-      config.output.publicPath = './';
-    }
-    return config;
+  chainWebpack(config, context) {
+    config.output.publicPath('./');
   },
 });

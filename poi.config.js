@@ -13,13 +13,6 @@ module.exports = (options, req) => ({
     template: path.join(__dirname, 'index.ejs'),
     publicPath: './',
   },
-  postcss: {
-    plugins: [],
-  },
-  presets: [
-    require('poi-preset-bundle-report')(),
-  ],
-  plugins: [],
   webpack(config) {
     if (options.mode === 'production') {
       config.output.publicPath = './';

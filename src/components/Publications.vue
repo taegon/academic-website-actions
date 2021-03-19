@@ -1,6 +1,6 @@
 <template>
   <div class="publications">
-    <h2>Publications</h2>
+    <h2>Selected Publications</h2>
     <ul>
       <li
         class="publication"
